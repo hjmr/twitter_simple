@@ -1,7 +1,7 @@
 from TwitterAPI import TwitterAPI
 import config
 
-api = TwitterAPI(config.CONSUMER_KEY, config.CONSUMER_SECRET, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
+api = TwitterAPI(config.API_KEY, config.API_SECRET_KEY, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
 
 res = api.request('tweets/search/30day/:research', {'query': 'ねこ'})
 

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "simple_retriever"
+name = "twitter_simple"
 version = "0.1.0"
 description = ""
 authors = ["hjmr <2620990+hjmr@users.noreply.github.com>"]

@@ -6,7 +6,7 @@ import config
 import utils
 
 
-API_BASE = 'tweets/search/30day/:{}'.format(config.DEV_ENV_LABEL)
+API = 'tweets/search/30day/:{}'.format(config.DEV_ENV_LABEL)
 api = TwitterAPI(config.API_KEY, config.API_SECRET_KEY, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
 
 
@@ -23,7 +23,7 @@ def search_tweets(query):
         'query': query
     }
 
-    res = api.request(API_BASE, params=params)
+    res = api.request(API, params=params)
     if res.status_code != 200:  # 正常通信出来なかった場合
         print("Error with code: %d" % res.status_code)
     else:

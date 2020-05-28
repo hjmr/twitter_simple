@@ -15,8 +15,8 @@ def parse_arg():
     args = argparse.ArgumentParser(description="get user timeline.")
     args.add_argument("-f", "--filename", type=str, help="specify output JSON filename.")
     args.add_argument("-u", "--user_id", type=int, help="specify user by user_id.")
-    args.add_argument("-n", "--screen_name", type=str, help="specify user by screen_name.")
-    args.add_argument("-c", "--tweet_count", type=int, default=200, help="the number of tweets to be obtain.")
+    args.add_argument("-s", "--screen_name", type=str, help="specify user by screen_name.")
+    args.add_argument("-n", "--num_tweets", type=int, default=200, help="the number of tweets to be obtain.")
     return args.parse_args()
 
 
@@ -66,7 +66,7 @@ def get_timeline(user_id=None, screen_name=None, count=200):
 
 if __name__ == '__main__':
     args = parse_arg()
-    tweets = get_timeline(args.user_id, args.screen_name, args.tweet_count)
+    tweets = get_timeline(args.user_id, args.screen_name, args.num_tweets)
     if args.filename:
         with open(args.filename, "w+") as f:
             json.dump(tweets, f, indent=2, ensure_ascii=False)

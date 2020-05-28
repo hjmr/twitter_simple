@@ -4,6 +4,7 @@ import time
 
 from TwitterAPI import TwitterAPI
 import config
+import utils
 
 
 API_BASE = 'statuses/user_timeline'
@@ -63,15 +64,6 @@ def get_timeline(user_id=None, screen_name=None, count=200):
     return tweets
 
 
-def show_tweets(tweets):
-    for t in tweets:
-        print("------------------------------------")
-        print("tweet id: {}".format(t['id']))
-        print("screen_name: {}".format(t['user']['screen_name']))
-        print("user id: {}".format(t['user']['id']))
-        print(t['text'])
-
-
 if __name__ == '__main__':
     args = parse_arg()
     tweets = get_timeline(args.user_id, args.screen_name, args.tweet_count)
@@ -79,4 +71,4 @@ if __name__ == '__main__':
         with open(args.filename, "w+") as f:
             json.dump(tweets, f, indent=2, ensure_ascii=False)
     else:
-        show_tweets(tweets)
+        utils.show_tweets(tweets)

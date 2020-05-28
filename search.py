@@ -3,6 +3,7 @@ import argparse
 
 from TwitterAPI import TwitterAPI
 import config
+import utils
 
 
 API_BASE = 'tweets/search/30day/:{}'.format(config.DEV_ENV_LABEL)
@@ -31,15 +32,6 @@ def search_tweets(query):
     return tweets
 
 
-def show_tweets(tweets):
-    for t in tweets:
-        print("------------------------------------")
-        print("tweet id: {}".format(t['id']))
-        print("screen_name: {}".format(t['user']['screen_name']))
-        print("user id: {}".format(t['user']['id']))
-        print(t['text'])
-
-
 if __name__ == '__main__':
     args = parse_arg()
     if args.query:
@@ -48,4 +40,4 @@ if __name__ == '__main__':
             with open(args.filename, "w+") as f:
                 json.dump(tweets, f, indent=2, ensure_ascii=False)
         else:
-            show_tweets(tweets)
+            utils.show_tweets(tweets)

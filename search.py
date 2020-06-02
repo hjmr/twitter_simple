@@ -24,7 +24,7 @@ def search_tweets(query):
     }
 
     res = api.request(API, params=params)
-    if res.status_code != 200:  # 正常通信出来なかった場合
+    if res.status_code != 200:  # 正常終了出来なかった場合
         print("Error with code: %d" % res.status_code)
     else:
         for tweet in res:

@@ -1,6 +1,7 @@
 import json
 import argparse
 import time
+from pprint import pprint
 
 from TwitterAPI import TwitterAPI
 import config
@@ -48,6 +49,7 @@ def get_timeline(user_id=None, screen_name=None, count=200):
             continue
         elif res.status_code != 200:  # その他の理由で正常通信出来なかった場合
             print("Failed: %d" % res.status_code)
+            pprint(res.json())
             break
         elif len(res.json()) == 0:  # 取ってくるツイートがなくなったとき
             print("Seems got all tweets.")

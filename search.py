@@ -1,5 +1,6 @@
 import json
 import argparse
+from pprint import pprint
 
 from TwitterAPI import TwitterAPI
 import config
@@ -26,6 +27,7 @@ def search_tweets(query):
     res = api.request(API, params=params)
     if res.status_code != 200:  # 正常終了出来なかった場合
         print("Error with code: %d" % res.status_code)
+        pprint(res.json())
     else:
         for tweet in res:
             tweets.append(tweet)

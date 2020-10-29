@@ -1,5 +1,6 @@
 import json
 import argparse
+import time
 from pprint import pprint
 
 from TwitterAPI import TwitterAPI
@@ -27,7 +28,7 @@ def search_tweets(query, count=200):
     next_id = None
 
     while(len(tweets) < count):
-        c = min(count - len(tweets), 100)
+        c = max(min(count - len(tweets), 100), 10)  # maxResults must be between 10 and 100
         params = {
             'query': query,
             'maxResults': c
@@ -36,7 +37,13 @@ def search_tweets(query, count=200):
             params["next"] = next_id
 
         res = api.request(API, params=params)
-        if res.status_code != 200:  # 正常終了出来なかった場合
+        if res.status_code == 429:  # 時間内の取得数リミットに引っかかった場合
+            secs_to_wait = int(res.headers["X-Rate-Limit-Reset"])
+            print("Exceed rate limit.")
+            print("Waiting for rate limit reset: {} secs.".format(secs_to_wait))
+            time.sleep(secs_to_wait)
+            continue
+        elif res.status_code != 200:  # それ以外の理由で正常終了出来なかった場合
             print("Error with code: %d" % res.status_code)
             pprint(res.json())
             break
@@ -45,6 +52,8 @@ def search_tweets(query, count=200):
             next_id = rj["next"]
             for tweet in rj["results"]:
                 tweets.append(tweet)
+            print("Got {} tweets. Total {} tweets.".format(len(rj["results"]), len(tweets)))
+            print("Possible API calls: {}".format(res.headers["X-Rate-Limit-Remaining"]))
     return tweets
 
 

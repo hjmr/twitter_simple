@@ -7,4 +7,8 @@ def show_tweets(tweets):
         print("retweeted count: {}".format(t['retweet_count']))
         print("quoted count: {}".format(t['quote_count']))
         print("reply count: {}".format(t['reply_count']))
+        if "retweeted_status" in t:
+            print("retweet: True")
+        else:
+            print("retweet: False")
         print(t['text'])

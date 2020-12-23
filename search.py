@@ -20,6 +20,7 @@ def parse_arg():
     args.add_argument("--min_retweet", type=int, help="collect tweets retweeted at least specified number of times.")
     args.add_argument("--min_quote", type=int, help="collect tweets quoted at least specified number of times.")
     args.add_argument("--min_reply", type=int, help="collect tweets replied at least specified number of times.")
+    args.add_argument("--exclude_retweets", action="store_true", help="to exculde retweets.")
     return args.parse_args()
 
 
@@ -81,6 +82,14 @@ def filter_by_min_reply(tweets, min_reply):
     return tweets_filtered
 
 
+def filter_excluding_retweets(tweets):
+    tweets_filtered = []
+    for t in tweets:
+        if "retweeted_status" not in t:
+            tweets_filtered.append(t)
+    return tweets_filtered
+
+
 if __name__ == '__main__':
     args = parse_arg()
     if args.query:
@@ -91,6 +100,8 @@ if __name__ == '__main__':
             tweets = filter_by_min_quote(tweets, args.min_quote)
         if args.min_reply:
             tweets = filter_by_min_reply(tweets, args.min_reply)
+        if args.exclude_retweets:
+            tweets = filter_excluding_retweets(tweets)
         if args.filename:
             with open(args.filename, "w+") as f:
                 json.dump(tweets, f, indent=2, ensure_ascii=False)

@@ -39,7 +39,9 @@ def search_tweets(query, count=200):
 
         res = api.request(API, params=params)
         if res.status_code == 429:  # 時間内の取得数リミットに引っかかった場合
-            secs_to_wait = int(res.headers["X-Rate-Limit-Reset"])
+            epoch_time_to_wait = int(res.headers["X-Rate-Limit-Reset"])
+            current_epoch_time = time.time()
+            secs_to_wait = int(epoch_time_to_wait - current_epoch_time) + 1
             print("Exceed rate limit.")
             print("Waiting for rate limit reset: {} secs.".format(secs_to_wait))
             time.sleep(secs_to_wait)

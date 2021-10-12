@@ -1,31 +1,17 @@
-[project]
-name = "twitter_simple"
+[tool.poetry]
+name = "twitter-simple"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "hjmr", email = "2620990+hjmr@users.noreply.github.com"},
-]
-dependencies = [
-    "twitterapi~=2.7",
-]
-requires-python = ">=3.9"
-dynamic = ["classifiers"]
-license = {text = "MIT"}
+authors = ["hjmr <2620990+hjmr@users.noreply.github.com>"]
 
-[project.urls]
-homepage = ""
+[tool.poetry.dependencies]
+python = "^3.9"
+TwitterAPI = "^2.7.5"
 
-
-[project.optional-dependencies]
-[tool]
-[tool.pdm]
-
-[tool.pdm.dev-dependencies]
-dev = [
-    "pylint~=2.11",
-    "black<22,>=21.9b0",
-]
+[tool.poetry.dev-dependencies]
+pylint = "^2.11.1"
+black = "^21.9b0"
 
 [build-system]
-requires = ["pdm-pep517"]
-build-backend = "pdm.pep517.api"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

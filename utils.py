@@ -5,8 +5,6 @@ def show_tweets(tweets):
         print("screen_name: {}".format(t['user']['screen_name']))
         print("user id: {}".format(t['user']['id']))
         print("retweeted count: {}".format(t['retweet_count']))
-        print("quoted count: {}".format(t['quote_count']))
-        print("reply count: {}".format(t['reply_count']))
         if "retweeted_status" in t:
             print("retweet: True")
         else:

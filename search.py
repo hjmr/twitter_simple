@@ -9,7 +9,7 @@ import utils
 
 
 API = 'tweets/search/30day/:{}'.format(config.DEV_ENV_LABEL)
-api = TwitterAPI(config.API_KEY, config.API_SECRET_KEY, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
+api = TwitterAPI(config.API_KEY, config.API_KEY_SECRET, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
 
 
 def parse_arg():

@@ -9,7 +9,7 @@ import utils
 
 
 API = 'statuses/user_timeline'
-api = TwitterAPI(config.API_KEY, config.API_SECRET_KEY, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
+api = TwitterAPI(config.API_KEY, config.API_KEY_SECRET, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
 
 
 def parse_arg():

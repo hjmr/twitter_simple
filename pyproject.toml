@@ -8,10 +8,6 @@ authors = ["hjmr <2620990+hjmr@users.noreply.github.com>"]
 python = "^3.9"
 TwitterAPI = "^2.7.5"
 
-[tool.poetry.dev-dependencies]
-pylint = "^2.11.1"
-black = "^21.9b0"
-
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
